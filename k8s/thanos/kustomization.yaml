@@ -1,0 +1,9 @@
+resources:
+  - agent
+  - querier
+  - receiver
+  - store
+  - sa.yaml
+  - secret.yaml
+  
+namespace: orca-prometheus

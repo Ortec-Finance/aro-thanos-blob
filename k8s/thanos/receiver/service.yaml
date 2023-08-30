@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: thanos-receive-tls
+  labels:
+    app: thanos-receive
+  name: thanos-receive
+spec:
+  ports:
+  - port: 9091
+    protocol: TCP
+    targetPort: http
+    name: http
+  - port: 19891
+    protocol: TCP
+    targetPort: grpc
+    name: grpc
+  selector:
+    app: thanos-receive
+  type: ClusterIP

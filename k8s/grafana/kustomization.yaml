@@ -1,0 +1,8 @@
+resources:
+  - datasource.yaml
+  - grafana.yaml
+  - rbac.yaml
+  - sa.yaml
+  - secret.yaml
+  
+namespace: orca-prometheus

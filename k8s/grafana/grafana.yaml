@@ -1,0 +1,125 @@
+apiVersion: integreatly.org/v1beta
+kind: Grafana
+metadata:
+  name: aro-thanos-af-grafana-cr
+  labels:
+    app.kubernetes.io/name: grafana-cr
+spec:
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: 'quay.io/openshift/origin-oauth-proxy:4.12'
+              name: grafana-proxy
+              args:
+              - -provider=openshift
+              - -https-address=:9091
+              - -http-address=
+              - -email-domain=*
+              - -upstream=http://localhost:3000
+              - '-openshift-sar={"resource": "namespaces", "verb": "get"}'
+              - '-openshift-delegate-urls={"/": {"resource": "namespaces", "verb": "get"}}'
+              - -tls-cert=/etc/tls/private/tls.crt
+              - -tls-key=/etc/tls/private/tls.key
+              - -client-secret-file=/var/run/secrets/kubernetes.io/serviceaccount/token
+              - -openshift-service-account=grafana-serviceaccount
+              - -openshift-ca=/etc/pki/tls/cert.pem
+              - -openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+              - -openshift-ca=/etc/proxy/certs/ca-bundle.crt
+              - -cookie-secret-file=/etc/proxy/secrets/session_secret
+              - -cookie-expire=24h
+              - -scope=user:info user:check-access user:list-projects
+              - -pass-access-token=true
+              - -pass-basic-auth=false
+              - -display-htpasswd-form=false
+              - -htpasswd-file=/etc/proxy/htpasswd/auth
+              - -skip-provider-button=true
+              ports:
+                - containerPort: 9091
+                  name: grafana-proxy
+              resources: {}
+              envFrom:
+                - secretRef:
+                    name: aro-thanos-af-grafana-cr-creds
+              volumeMounts:
+                - mountPath: /etc/tls/private
+                  name: secret-aro-thanos-af-grafana-cr-tls
+                  readOnly: false
+                - mountPath: /etc/proxy/secrets
+                  name: secret-aro-thanos-af-grafana-cr-proxy
+                  readOnly: false
+                - mountPath: /etc/proxy/htpasswd
+                  name: secret-aro-thanos-af-grafana-cr-htpasswd
+                  readOnly: true
+                - mountPath: /etc/proxy/certs
+                  name: ocp-injected-certs
+                  readOnly: false
+              volumes:
+                - name: "aro-thanos-af-grafana-cr-tls"
+                  secret:
+                    secretName: "aro-thanos-af-grafana-cr-tls"
+                - name: "aro-thanos-af-grafana-cr-proxy"
+                  secret:
+                    secretName: "aro-thanos-af-grafana-cr-proxy"
+                - name: "aro-thanos-af-grafana-cr-htpasswd"
+                  secret:
+                    secretName: "aro-thanos-af-grafana-cr-htpasswd"
+                - name: ocp-injected-certs
+                  configMap:
+                    name: ocp-injected-certs
+  config:
+    analytics:
+      check_for_updates: false
+      reporting_enabled: false
+    auth:
+      disable_login_form: true
+      disable_signout_menu: true
+      sigv4_auth_enabled: true
+    auth.basic:
+      enabled: false
+    auth.proxy:
+      auto_sign_up: true
+      enabled: true
+      header_name: X-Forwarded-User
+    log:
+      level: warn
+      mode: console
+    security:
+      admin_user: system:does-not-exist
+      cookie_secure: true
+    users:
+      auto_assign_org: true
+      auto_assign_org_role: Viewer
+      default_theme: light
+      editors_can_admin: true
+      viewers_can_edit: true
+  service:
+    ports:
+      - name: grafana-proxy
+        port: 9091
+        protocol: TCP
+        targetPort: grafana-proxy
+    annotations:
+      service.alpha.openshift.io/serving-cert-secret-name: aro-thanos-af-grafana-cr-tls
+  route:
+    spec:
+      port:
+        targetPort: grafana-proxy
+      tls:
+        termination: reencrypt
+      to:
+        kind: Service
+        name: grafana-service
+        weight: 100
+      wildcardPolicy: None
+  ingress:
+    enabled: True
+    targetPort: grafana-proxy
+    termination: reencrypt
+  serviceAccount:
+    annotations:
+      serviceaccounts.openshift.io/oauth-redirectreference.primary: '{"kind":"OAuthRedirectReference","apiVersion":"v1","reference":{"kind":"Route","name":"grafana-route"}}'
+  dashboardLabelSelector:
+    - matchExpressions:
+        - { key: "app", operator: In, values: ['grafana'] }

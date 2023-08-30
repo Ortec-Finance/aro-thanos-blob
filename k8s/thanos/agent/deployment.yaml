@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aro-thanos-af-grafana-agent
+  labels:
+    app.kubernetes.io/name: aro-thanos-af
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: aro-thanos-af-grafana-agent
+  template:
+    metadata:
+      annotations:
+        checksum/config: da553d58a418ebec0ff979371d6076c8b2ec6169308b814949246176d24b9812
+      labels:
+        name: aro-thanos-af-grafana-agent
+    spec:
+      containers:
+      - args:
+        - -config.file=/etc/agent/agent.yaml
+        command:
+        - /bin/agent
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: grafana/agent:v0.28.0
+        imagePullPolicy: IfNotPresent
+        name: agent
+        ports:
+        - containerPort: 12345
+          name: http-metrics
+        volumeMounts:
+        - mountPath: /etc/agent
+          name: grafana-agent
+      serviceAccount: aro-thanos-af-grafana-agent
+      volumes:
+      - configMap:
+          name: aro-thanos-af-grafana-agent
+        name: grafana-agent
