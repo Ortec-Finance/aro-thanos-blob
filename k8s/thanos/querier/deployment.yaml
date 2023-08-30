@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: thanos-querier
   labels:
+    app.kubernetes.io/part-of: thanos-persistence
     app: thanos-querier
 spec:
   replicas: 1

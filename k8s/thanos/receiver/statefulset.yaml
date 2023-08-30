@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: thanos-receive
   labels:
+    app.kubernetes.io/part-of: thanos-persistence
     app: thanos-receive
 spec:
   replicas: 1

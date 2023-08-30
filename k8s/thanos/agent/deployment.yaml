@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: aro-thanos-af-grafana-agent
   labels:
+    app.kubernetes.io/part-of: thanos-persistence
     app.kubernetes.io/name: aro-thanos-af
 spec:
   minReadySeconds: 10

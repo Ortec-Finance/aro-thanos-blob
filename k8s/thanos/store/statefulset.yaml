@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: thanos-store-gateway
   labels:
+    app.kubernetes.io/part-of: thanos-persistence
     app: thanos-store-gateway
 spec:
   replicas: 1
