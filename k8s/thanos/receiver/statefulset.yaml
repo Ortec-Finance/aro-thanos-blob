@@ -33,7 +33,7 @@ spec:
         - --remote-write.address=0.0.0.0:19291
         - --objstore.config-file=/etc/prometheus/store-secret.yaml
         - --label
-        - 'cluster="my-cluster"'
+        - 'cluster="orca-pearl"'
         ports:
         - name: http
           containerPort: 19291
