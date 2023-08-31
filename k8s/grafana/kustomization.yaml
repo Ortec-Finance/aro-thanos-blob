@@ -3,5 +3,5 @@ resources:
   - grafana.yaml
   - rbac.yaml
   - secret.yaml
-
+  - dashboards.yaml
 namespace: orca-prometheus
