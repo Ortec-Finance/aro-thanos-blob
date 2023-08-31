@@ -56,13 +56,13 @@ spec:
                   name: ocp-injected-certs
                   readOnly: false
           volumes:
-            - name: "aro-thanos-af-grafana-cr-tls"
+            - name: "secret-aro-thanos-af-grafana-cr-tls"
               secret:
                 secretName: "aro-thanos-af-grafana-cr-tls"
-            - name: "aro-thanos-af-grafana-cr-proxy"
+            - name: "secret-aro-thanos-af-grafana-cr-proxy"
               secret:
                 secretName: "aro-thanos-af-grafana-cr-proxy"
-            - name: "aro-thanos-af-grafana-cr-htpasswd"
+            - name: "secret-aro-thanos-af-grafana-cr-htpasswd"
               secret:
                 secretName: "aro-thanos-af-grafana-cr-htpasswd"
             - name: ocp-injected-certs
