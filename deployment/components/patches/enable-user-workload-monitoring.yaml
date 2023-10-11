@@ -1,4 +1,4 @@
-apiVersion: patch-operator.redhat.io/v1
+apiVersion: redhatcop.redhat.io/v1alpha1
 kind: Patch
 metadata:
   name: add-remote-write-to-cluster-monitoring-config
