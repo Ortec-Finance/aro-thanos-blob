@@ -1,4 +1,4 @@
 resources:
-  - openshift-monitoring
   - thanos
   - grafana
+  - patches

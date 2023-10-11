@@ -1,0 +1,18 @@
+apiVersion: patch-operator.redhat.io/v1
+kind: Patch
+metadata:
+  name: add-remote-write-to-cluster-monitoring-config
+  namespace: openshift-monitoring
+spec:
+  targetRef:
+    apiVersion: v1
+    kind: ConfigMap
+    name: cluster-monitoring-config
+    namespace: openshift-monitoring
+  patchType: merge
+  patchContent: |
+    data:
+      config.yaml: |
+        alertmanagerMain: {}
+        prometheusK8s: {}
+        enableUserWorkload: true

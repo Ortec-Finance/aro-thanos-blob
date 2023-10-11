@@ -1,3 +1,0 @@
-resources:
-  - cluster-monitoring-config.yaml
-  - user-workload-monitoring-config.yaml
