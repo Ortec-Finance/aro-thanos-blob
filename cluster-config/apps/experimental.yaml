@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: orca-prometheus
+  name: cluster-metrics-persistance
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: 'orca-prometheus'
+    namespace: 'cluster-metric-persistance'
     server: 'https://kubernetes.default.svc'
   source:
-    path: k8s
+    path: overlays/experimental
     repoURL: 'git@github.com:Ortec-Finance/orca-prometheus.git'
     targetRevision: HEAD
   project: default
