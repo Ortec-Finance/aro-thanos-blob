@@ -16,4 +16,3 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: aro-thanos-af
-  namespace: orca-prometheus
