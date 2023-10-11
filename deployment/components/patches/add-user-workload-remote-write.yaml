@@ -4,7 +4,7 @@ metadata:
   name: add-remote-write-to-user-workload-monitoring-config
 spec:
   serviceAccountRef:
-    name: cluster-metric-persistance
+    name: metric-persistance-patcher
   patches:
     remote-write:
       targetObjectRef:
