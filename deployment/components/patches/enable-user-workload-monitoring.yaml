@@ -4,13 +4,13 @@ metadata:
   name: add-remote-write-to-cluster-monitoring-config
   namespace: openshift-monitoring
 spec:
-  targetRef:
+  targetObjectRef:
     apiVersion: v1
     kind: ConfigMap
     name: cluster-monitoring-config
     namespace: openshift-monitoring
-  patchType: merge
-  patchContent: |
+  patchType: application/merge-patch+json
+  patchTemplate: |
     data:
       config.yaml: |
         alertmanagerMain: {}

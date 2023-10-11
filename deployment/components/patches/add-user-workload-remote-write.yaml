@@ -4,13 +4,13 @@ metadata:
   name: add-remote-write-to-user-workload-monitoring-config
   namespace: openshift-user-workload-monitoring
 spec:
-  targetRef:
+  targetObjectRef:
     apiVersion: v1
     kind: ConfigMap
     name: user-workload-monitoring-config
     namespace: openshift-user-workload-monitoring
-  patchType: merge
-  patchContent: |
+  patchType: application/merge-patch+json
+  patchTemplate: |
     data:
       config.yaml: |
         prometheus:
