@@ -2,8 +2,9 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: Patch
 metadata:
   name: add-remote-write-to-user-workload-monitoring-config
-  namespace: openshift-user-workload-monitoring
 spec:
+  serviceAccountRef:
+    name: cluster-metric-persistance
   patches:
     remote-write:
       targetObjectRef:
