@@ -7,4 +7,4 @@ data:
   config.yaml: |
     prometheus:
       remoteWrite:
-        - url: "http://thanos-receive.orca-prometheus.svc.cluster.local:9091/api/v1/receive"
+        - url: "http://thanos-receive.cluster-metrics-persistance.svc.cluster.local:9091/api/v1/receive"

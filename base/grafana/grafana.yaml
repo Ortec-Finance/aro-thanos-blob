@@ -11,7 +11,7 @@ spec:
           name: grafana-secrets
   config:
     server:
-      root_url: 'https://grafana-route-orca-prometheus.apps.gv4qq5qf.westeurope.aroapp.io'
+      root_url: 'https://grafana-route-cluster-metrics-persistance.apps.gv4qq5qf.westeurope.aroapp.io'
     auth:
       disable_login_form:  true
       disable_signout_menu:  true

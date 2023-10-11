@@ -15,4 +15,4 @@ spec:
         timeInterval: 5s
       name: prometheus
       type: prometheus
-      url: 'http://thanos-querier.orca-prometheus.svc.cluster.local:9090'
+      url: 'http://thanos-querier.cluster-metrics-persistance.svc.cluster.local:9090'
