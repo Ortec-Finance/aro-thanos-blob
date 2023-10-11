@@ -8,7 +8,7 @@ spec:
     namespace: 'cluster-metric-persistance'
     server: 'https://kubernetes.default.svc'
   source:
-    path: overlays/experimental
+    path: deployment/overlays/experimental
     repoURL: 'git@github.com:Ortec-Finance/orca-prometheus.git'
     targetRevision: HEAD
   project: default

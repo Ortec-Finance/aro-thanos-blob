@@ -1,3 +1,0 @@
-resources:
-  - add-user-workload-remote-write.yaml
-  - enable-user-workload-monitoring.yaml
