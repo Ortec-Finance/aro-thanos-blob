@@ -4,15 +4,17 @@ metadata:
   name: add-remote-write-to-user-workload-monitoring-config
   namespace: openshift-user-workload-monitoring
 spec:
-  targetObjectRef:
-    apiVersion: v1
-    kind: ConfigMap
-    name: user-workload-monitoring-config
-    namespace: openshift-user-workload-monitoring
-  patchType: application/merge-patch+json
-  patchTemplate: |
-    data:
-      config.yaml: |
-        prometheus:
-          remoteWrite:
-            - url: "http://thanos-receive.cluster-metrics-persistance.svc.cluster.local:9091/api/v1/receive"
+  patches:
+    remote-write:
+      targetObjectRef:
+        apiVersion: v1
+        kind: ConfigMap
+        name: user-workload-monitoring-config
+        namespace: openshift-user-workload-monitoring
+      patchType: application/merge-patch+json
+      patchTemplate: |
+        data:
+          config.yaml: |
+            prometheus:
+              remoteWrite:
+                - url: "http://thanos-receive.cluster-metrics-persistance.svc.cluster.local:9091/api/v1/receive"

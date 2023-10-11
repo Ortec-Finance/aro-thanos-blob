@@ -4,15 +4,17 @@ metadata:
   name: add-remote-write-to-cluster-monitoring-config
   namespace: openshift-monitoring
 spec:
-  targetObjectRef:
-    apiVersion: v1
-    kind: ConfigMap
-    name: cluster-monitoring-config
-    namespace: openshift-monitoring
-  patchType: application/merge-patch+json
-  patchTemplate: |
-    data:
-      config.yaml: |
-        alertmanagerMain: {}
-        prometheusK8s: {}
-        enableUserWorkload: true
+  patches:
+    enable-user-workload:
+      targetObjectRef:
+        apiVersion: v1
+        kind: ConfigMap
+        name: cluster-monitoring-config
+        namespace: openshift-monitoring
+      patchType: application/merge-patch+json
+      patchTemplate: |
+        data:
+          config.yaml: |
+            alertmanagerMain: {}
+            prometheusK8s: {}
+            enableUserWorkload: true
