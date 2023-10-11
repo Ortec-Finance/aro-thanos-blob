@@ -4,4 +4,3 @@ resources:
   - rbac.yaml
   - secret.yaml
   - dashboards.yaml
-  - operator.yaml
