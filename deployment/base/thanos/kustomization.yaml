@@ -3,5 +3,5 @@ resources:
   - querier
   - receiver
   - store
-  - sa.yaml
+  - permissions
   - secret.yaml

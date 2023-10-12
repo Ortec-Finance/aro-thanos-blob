@@ -1,0 +1,5 @@
+resources:
+  - aro-thanos-scc.yaml
+  - clusterrole.yaml
+  - sa.yaml
+  - scc-rb.yaml
