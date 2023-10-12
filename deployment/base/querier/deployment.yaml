@@ -16,10 +16,6 @@ spec:
         app: thanos-querier
     spec:
       serviceAccountName: aro-thanos-af-thanos-querier
-      # securityContext:
-      #   runAsNonRoot: true
-      #   runAsUser: 65534
-      #   fsGroup: 65534
       containers:
       - name: thanos
         image: quay.io/thanos/thanos:v0.24.0-rc.2

@@ -19,8 +19,8 @@ spec:
       serviceAccountName: aro-thanos-af
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000880001
-        fsGroup: 1000880001
+        runAsUser: 65534
+        fsGroup: 65534
       containers:
       - name: thanos-receive
         image: quay.io/thanos/thanos:v0.24.0-rc.2
