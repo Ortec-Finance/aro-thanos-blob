@@ -4,3 +4,14 @@ resources:
 components:
   - ../../components/patches
   - ../../components/grafana
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/provider/azurekv/vaultUrl
+        value: https://nav-ocp-dev-eu.vault.azure.net/
+    target:
+      group: external-secrets.io
+      kind: SecretStore
+      name: aro-thanos-af-store
+      version: v1beta1

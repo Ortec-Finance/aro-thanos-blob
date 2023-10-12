@@ -1,0 +1,3 @@
+resources:
+  - external-secret.yaml
+  - secret-store.yaml

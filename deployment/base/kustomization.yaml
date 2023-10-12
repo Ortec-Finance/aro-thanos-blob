@@ -4,4 +4,4 @@ resources:
   - receiver
   - store
   - permissions
-  - secret.yaml
+  - azure-storage
