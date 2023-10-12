@@ -1,7 +1,0 @@
-resources:
-  - agent
-  - querier
-  - receiver
-  - store
-  - permissions
-  - secret.yaml

@@ -1,2 +1,7 @@
 resources:
-  - thanos
+  - agent
+  - querier
+  - receiver
+  - store
+  - permissions
+  - secret.yaml
