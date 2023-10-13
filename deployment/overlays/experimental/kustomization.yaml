@@ -15,3 +15,12 @@ patches:
       kind: SecretStore
       name: aro-thanos-blob-store
       version: v1beta1
+  - patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: 'cluster="orca-pearl"'
+    target:
+      group: apps
+      kind: StatefulSet
+      name: thanos-receive
+      version: v1
