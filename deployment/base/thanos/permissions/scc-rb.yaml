@@ -1,11 +1,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: system:cluster-metric-persistance:scc:aro-thanos
+  name: system:aro-thanos-af:scc:aro-thanos
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: system:cluster-metric-persistance:scc:aro-thanos
+  name: system:aro-thanos-af:scc:aro-thanos
 subjects:
 - kind: ServiceAccount
   name: aro-thanos-af

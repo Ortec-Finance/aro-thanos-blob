@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: 'cluster-metric-persistance'
+    namespace: 'aro-thanos-af'
     server: 'https://kubernetes.default.svc'
   source:
     path: deployment/overlays/experimental

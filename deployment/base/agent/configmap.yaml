@@ -18,7 +18,7 @@ data:
         external_labels:
           cluster: my-cluster
         remote_write:
-          - url: "http://thanos-receive.cluster-metric-persistance.svc.cluster.local:9091/api/v1/receive"
+          - url: "http://thanos-receive.aro-thanos-af.svc.cluster.local:9091/api/v1/receive"
             queue_config:
               max_samples_per_send: 1000
               max_shards: 200
