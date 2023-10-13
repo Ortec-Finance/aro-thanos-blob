@@ -8,3 +8,4 @@ resources:
   - dashboards.yaml
   - operator.yaml
   - ocp-injected-certs.yaml
+  - operator-group.yaml
