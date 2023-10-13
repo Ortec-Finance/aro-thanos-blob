@@ -27,3 +27,11 @@ rules:
       - subjectaccessreviews
     verbs:
       - create
+  - apiGroups:
+      - integreatly.org
+    resources:
+      - grafanadatasources
+    verbs:
+      - create
+      - list
+      - get
