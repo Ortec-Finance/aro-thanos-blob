@@ -1,8 +1,6 @@
 kind: Subscription
 apiVersion: operators.coreos.com/v1alpha1
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "-8"
   name: grafana-operator
 spec:
   channel: v4

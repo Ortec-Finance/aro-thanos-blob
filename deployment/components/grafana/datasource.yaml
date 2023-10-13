@@ -2,7 +2,6 @@ kind: Secret
 apiVersion: v1
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     kubernetes.io/service-account.name: "grafana-serviceaccount"
   name: grafana-serviceaccount-token
@@ -12,7 +11,6 @@ kind: Job
 apiVersion: batch/v1
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   name: create-datasource
 spec:
