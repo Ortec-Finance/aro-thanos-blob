@@ -9,7 +9,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/provider/azurekv/vaultUrl
-        value: https://nav-ocp-dev-eu.vault.azure.net/
+        value: https://labs-temp-metric.vault.azure.net/
     target:
       group: external-secrets.io
       kind: SecretStore
