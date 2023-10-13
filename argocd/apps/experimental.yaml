@@ -9,8 +9,8 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: deployment/overlays/experimental
-    repoURL: 'git@github.com:Ortec-Finance/orca-prometheus.git'
-    targetRevision: renaming
+    repoURL: 'git@github.com:Ortec-Finance/aro-thanos-blob.git'
+    targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
