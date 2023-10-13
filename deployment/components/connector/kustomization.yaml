@@ -1,0 +1,7 @@
+kind: Component
+
+
+
+
+# TODO: ADD RB SO THAT THANOS-QUERIER IN ARO-THANOS-BLOB can reach the connector
+# aro-thanos-blob-thanos-querier
