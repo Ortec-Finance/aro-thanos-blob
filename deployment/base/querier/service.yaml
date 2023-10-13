@@ -6,10 +6,9 @@ metadata:
   name: thanos-querier
 spec:
   ports:
-  - port: 9090
+  - port: 9091
     protocol: TCP
-    targetPort: http
-    name: http
+    name: web
   selector:
     app: thanos-querier
   type: ClusterIP
