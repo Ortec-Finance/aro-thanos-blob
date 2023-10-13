@@ -5,34 +5,88 @@ metadata:
   labels:
     app.kubernetes.io/name: grafana-cr
 spec:
-  deployment:
-    envFrom:
-      - secretRef:
-          name: grafana-secrets
   config:
-    server:
-      root_url: 'https://grafana-route-cluster-metrics-persistance.apps.gv4qq5qf.westeurope.aroapp.io'
     auth:
       disable_login_form:  true
       disable_signout_menu:  true
     auth.anonymous:
       enabled: false
-    auth.generic_oauth:
-      allow_sign_up:  true
-      api_url: >-
-        https://auth.ortec-finance.com/auth/realms/aro-platform_prd/protocol/openid-connect/userinfo
-      auth_url: >-
-        https://auth.ortec-finance.com/auth/realms/aro-platform_prd/protocol/openid-connect/auth
-      enabled:  true
-      token_url: >-
-        https://auth.ortec-finance.com/auth/realms/aro-platform_prd/protocol/openid-connect/token
+    auth.basic:
+      enabled: true
+    auth.proxy:
+      enabled: True
+      enable_login_token: True
+      header_property: username
+      header_name: X-Forwarded-User
     log:
-      level: debug
+      level: warn
       mode: console
     users:
       auto_assign_org_role: Admin
+      editors_can_admin: True
+    security:
+      admin_password: admin
+      admin_user: admin
+  secrets:
+    - grafana-k8s-tls
+  client:
+    preferService: true
   ingress:
     enabled: true
+  containers:
+    - args:
+        - '-provider=openshift'
+        - '-pass-basic-auth=false'
+        - '-https-address=:9091'
+        - '-http-address='
+        - '-email-domain=*'
+        - '-upstream=http://localhost:3000'
+        - '-tls-cert=/etc/tls/private/tls.crt'
+        - '-tls-key=/etc/tls/private/tls.key'
+        - '-client-secret-file=/var/run/secrets/kubernetes.io/serviceaccount/token'
+        - '-cookie-secret=supersecretsquirrel'
+        - '-openshift-service-account=grafana-serviceaccount'
+        - '-openshift-ca=/etc/pki/tls/cert.pem'
+        - '-openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+        - '-openshift-ca=/etc/grafana-configmaps/ocp-injected-certs/ca-bundle.crt'
+        - '-skip-auth-regex=^/metrics'
+        - '-openshift-sar={"namespace": "$(MY_POD_NAMESPACE)", "resource": "services", "verb": "get"}'
+      image: 'quay.io/openshift/origin-oauth-proxy:4.11'
+      name: grafana-proxy
+      ports:
+        - containerPort: 9091
+          name: grafana-proxy
+      resources: {}
+      volumeMounts:
+        - mountPath: /etc/tls/private
+          name: secret-grafana-k8s-tls
+          readOnly: false
+      env:
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+  ingress:
+    enabled: true
+    targetPort: grafana-proxy
+    termination: reencrypt
+  service:
+    annotations:
+      service.alpha.openshift.io/serving-cert-secret-name: grafana-k8s-tls
+    ports:
+      - name: grafana-proxy
+        port: 9091
+        protocol: TCP
+        targetPort: grafana-proxy
+  serviceAccount:
+    annotations:
+      serviceaccounts.openshift.io/oauth-redirectreference.primary: >-
+        {"kind":"OAuthRedirectReference","apiVersion":"v1","reference":{"kind":"Route","name":"grafana-route"}}
+  configMaps:
+    - ocp-injected-certs
   dashboardLabelSelector:
     - matchExpressions:
-        - { key: "app", operator: In, values: ['grafana'] }
+        - key: app
+          operator: In
+          values:
+            - grafana

@@ -1,18 +1,68 @@
-apiVersion: integreatly.org/v1alpha1
-kind: GrafanaDataSource
+kind: Secret
+apiVersion: v1
 metadata:
-  name: aro-thanos-af-prometheus
-  labels:
-
-    app.kubernetes.io/name: aro-thanos-af
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    kubernetes.io/service-account.name: "grafana-serviceaccount"
+  name: grafana-serviceaccount-token
+  namespace: grafana
+type: kubernetes.io/service-account-token
+---
+kind: Job
+apiVersion: batch/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: create-datasource
+  namespace: grafana
 spec:
-  name: aro-thanos-af.yaml
-  datasources:
-    - access: proxy
-      editable: false
-      isDefault: true
-      jsonData:
-        timeInterval: 5s
-      name: prometheus
-      type: prometheus
-      url: 'http://thanos-querier.cluster-metrics-persistance.svc.cluster.local:9090'
+  template:
+    spec:
+      serviceAccountName: grafana-serviceaccount
+      volumes:
+      - name: token
+        secret:
+          secretName: grafana-serviceaccount-token
+      containers:
+      - image: quay.io/openshift/origin-cli:4.11
+        name: create-datasource
+        volumeMounts:
+        - name: token
+          mountPath: /token
+          readOnly: true
+        env:
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+        command:
+        - /bin/sh
+        - -x
+        - -c
+        - |
+          BEARER_TOKEN=$(cat /token/token)
+          oc apply -f - << EOF
+          apiVersion: integreatly.org/v1alpha1
+          kind: GrafanaDataSource
+          metadata:
+            name: aro-thanos-af-prometheus
+            namespace: ${MY_POD_NAMESPACE}
+          spec:
+            datasources:
+              - access: proxy
+                editable: false
+                isDefault: true
+                jsonData:
+                  httpHeaderName1: Authorization
+                  timeInterval: 5s
+                  tlsSkipVerify: true
+                name: prometheus
+                secureJsonData:
+                  httpHeaderValue1: 'Bearer ${BEARER_TOKEN}'
+                type: prometheus
+                url: 'https://thanos-querier.${MY_POD_NAMESPACE}.svc.cluster.local:9091'
+            name: aro-thanos-af.yaml
+          EOF
+      restartPolicy: Never

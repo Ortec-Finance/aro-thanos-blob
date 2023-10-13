@@ -5,6 +5,6 @@ resources:
   - datasource.yaml
   - grafana.yaml
   - rbac.yaml
-  - secret.yaml
   - dashboards.yaml
   - operator.yaml
+  - ocp-injected-certs.yaml

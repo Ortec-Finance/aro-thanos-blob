@@ -1,8 +1,9 @@
-apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
+apiVersion: operators.coreos.com/v1alpha1
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-8"
   name: grafana-operator
-  namespace: cluster-metric-persistance
 spec:
   channel: v4
   installPlanApproval: Automatic

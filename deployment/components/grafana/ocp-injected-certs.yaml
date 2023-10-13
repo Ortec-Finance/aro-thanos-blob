@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  labels:
+    config.openshift.io/inject-trusted-cabundle: "true"
+  annotations:
+    argocd.argoproj.io/sync-wave: "-9"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: ocp-injected-certs
+  namespace: opal-grafana
