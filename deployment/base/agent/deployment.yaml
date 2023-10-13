@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aro-thanos-af-grafana-agent
+  name: aro-thanos-blob-grafana-agent
   labels:
     app.kubernetes.io/part-of: thanos-persistence
-    app.kubernetes.io/name: aro-thanos-af
+    app.kubernetes.io/name: aro-thanos-blob
 spec:
   minReadySeconds: 10
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      name: aro-thanos-af-grafana-agent
+      name: aro-thanos-blob-grafana-agent
   template:
     metadata:
       annotations:
         checksum/config: da553d58a418ebec0ff979371d6076c8b2ec6169308b814949246176d24b9812
       labels:
-        name: aro-thanos-af-grafana-agent
+        name: aro-thanos-blob-grafana-agent
     spec:
       containers:
       - args:
@@ -38,8 +38,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/agent
           name: grafana-agent
-      serviceAccount: aro-thanos-af-grafana-agent
+      serviceAccount: aro-thanos-blob-grafana-agent
       volumes:
       - configMap:
-          name: aro-thanos-af-grafana-agent
+          name: aro-thanos-blob-grafana-agent
         name: grafana-agent

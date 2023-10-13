@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: 'aro-thanos-af'
+    namespace: 'aro-thanos-blob'
     server: 'https://kubernetes.default.svc'
   source:
     path: deployment/overlays/experimental

@@ -15,7 +15,7 @@ spec:
       labels:
         app: thanos-querier
     spec:
-      serviceAccountName: aro-thanos-af-thanos-querier
+      serviceAccountName: aro-thanos-blob-thanos-querier
       containers:
       - name: thanos
         image: quay.io/thanos/thanos:v0.24.0-rc.2

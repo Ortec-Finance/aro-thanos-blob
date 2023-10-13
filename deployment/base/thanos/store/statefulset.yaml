@@ -17,7 +17,7 @@ spec:
         app: thanos-store-gateway
         thanos-store-api: "true"
     spec:
-      serviceAccountName: aro-thanos-af
+      serviceAccountName: aro-thanos-blob
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
@@ -52,6 +52,6 @@ spec:
       volumes:
       - name: store-credentials
         secret:
-          secretName: aro-thanos-af-af-creds
+          secretName: aro-thanos-blob-af-creds
       - name: data
         emptyDir: {}

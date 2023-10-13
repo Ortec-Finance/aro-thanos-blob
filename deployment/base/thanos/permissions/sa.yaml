@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: aro-thanos-af
+  name: aro-thanos-blob
   labels:
-    app.kubernetes.io/name: aro-thanos-af
+    app.kubernetes.io/name: aro-thanos-blob

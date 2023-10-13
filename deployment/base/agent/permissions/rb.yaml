@@ -1,14 +1,14 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: aro-thanos-af-grafana-agent
+  name: aro-thanos-blob-grafana-agent
   labels:
-    app.kubernetes.io/name: aro-thanos-af
+    app.kubernetes.io/name: aro-thanos-blob
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: aro-thanos-af-grafana-agent
+  name: aro-thanos-blob-grafana-agent
 subjects:
 - kind: ServiceAccount
-  name: aro-thanos-af-grafana-agent
-  namespace: aro-thanos-af
+  name: aro-thanos-blob-grafana-agent
+  namespace: aro-thanos-blob

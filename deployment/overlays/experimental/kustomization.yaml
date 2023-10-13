@@ -13,5 +13,5 @@ patches:
     target:
       group: external-secrets.io
       kind: SecretStore
-      name: aro-thanos-af-store
+      name: aro-thanos-blob-store
       version: v1beta1

@@ -1,8 +1,8 @@
 kind: ConfigMap
 metadata:
-  name: aro-thanos-af-grafana-agent
+  name: aro-thanos-blob-grafana-agent
   labels:
-    app.kubernetes.io/name: aro-thanos-af
+    app.kubernetes.io/name: aro-thanos-blob
 apiVersion: v1
 data:
   agent.yaml: |
@@ -18,7 +18,7 @@ data:
         external_labels:
           cluster: my-cluster
         remote_write:
-          - url: "http://thanos-receive.aro-thanos-af.svc.cluster.local:9091/api/v1/receive"
+          - url: "http://thanos-receive.aro-thanos-blob.svc.cluster.local:9091/api/v1/receive"
             queue_config:
               max_samples_per_send: 1000
               max_shards: 200
