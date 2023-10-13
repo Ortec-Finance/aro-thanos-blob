@@ -52,12 +52,12 @@ spec:
                 jsonData:
                   httpHeaderName1: Authorization
                   timeInterval: 5s
-                  tlsSkipVerify: true
+                  # tlsSkipVerify: true
                 name: prometheus
-                secureJsonData:
-                  httpHeaderValue1: 'Bearer ${BEARER_TOKEN}'
+                # secureJsonData:
+                #   httpHeaderValue1: 'Bearer ${BEARER_TOKEN}'
                 type: prometheus
-                url: 'https://thanos-querier.${MY_POD_NAMESPACE}.svc.cluster.local:9091'
+                url: 'http://thanos-querier.${MY_POD_NAMESPACE}.svc.cluster.local:9090'
             name: aro-thanos-af.yaml
           EOF
       restartPolicy: Never
