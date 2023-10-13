@@ -35,3 +35,4 @@ rules:
       - create
       - list
       - get
+      - patch
