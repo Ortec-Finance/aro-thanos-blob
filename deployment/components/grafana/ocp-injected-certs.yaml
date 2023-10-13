@@ -7,4 +7,3 @@ metadata:
     argocd.argoproj.io/sync-wave: "-9"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   name: ocp-injected-certs
-  namespace: opal-grafana
