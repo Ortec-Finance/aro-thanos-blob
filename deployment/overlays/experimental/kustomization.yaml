@@ -2,7 +2,7 @@ resources:
   - ../../base
 
 components:
-  - ../../components/patches
+  - ../../components/azure-storage
   - ../../components/grafana
 
 patches:
