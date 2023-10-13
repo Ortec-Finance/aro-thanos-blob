@@ -31,8 +31,6 @@ spec:
     - grafana-k8s-tls
   client:
     preferService: true
-  ingress:
-    enabled: true
   containers:
     - args:
         - '-provider=openshift'
