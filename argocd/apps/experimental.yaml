@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-metrics-persistance
+  name: aro-thanos-blob
   namespace: openshift-gitops
 spec:
   destination:
@@ -10,7 +10,7 @@ spec:
   source:
     path: deployment/overlays/experimental
     repoURL: 'git@github.com:Ortec-Finance/orca-prometheus.git'
-    targetRevision: HEAD
+    targetRevision: renaming
   project: default
   syncPolicy:
     automated:
