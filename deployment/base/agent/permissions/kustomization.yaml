@@ -1,0 +1,4 @@
+resources:
+  - sa.yaml
+  - cluster-role.yaml
+  - rb.yaml

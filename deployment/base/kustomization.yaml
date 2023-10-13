@@ -1,7 +1,4 @@
 resources:
   - agent
-  - querier
-  - receiver
-  - store
-  - permissions
+  - thanos
   - azure-storage

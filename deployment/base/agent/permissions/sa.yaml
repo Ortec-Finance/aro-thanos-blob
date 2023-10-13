@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: aro-thanos-af
+  name: aro-thanos-af-grafana-agent
   labels:
     app.kubernetes.io/name: aro-thanos-af
----
+
