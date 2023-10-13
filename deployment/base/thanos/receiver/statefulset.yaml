@@ -51,4 +51,5 @@ spec:
         secret:
           secretName: aro-thanos-blob-af-creds
       - name: remote-write-data
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: thanos-receiver-pvc
