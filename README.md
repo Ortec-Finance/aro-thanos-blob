@@ -4,6 +4,8 @@ This project deploys aro-thanos-blob on your cluster. This will help you in pers
 ## Getting Started
 To deploy the orchestration, have a look at the `components` under `deployment/`. These are all optional, so pick the ones that suit your cluster. Do make sure that you need to handle the metric forwarding yourself if you choose to not use the Patch Operator.
 
+Use the `deployment/overlays` in this Repository as an example, in your own GitOps setup you can reference the base folder in your `kustomization.yaml` like this: `- ssh://git@github.com:Ortec-Finance/aro-thanos-blob//deployment/base?ref=main` and implement your overlays with your custom configuration.
+
 ### Connecting the Azure Blob
 In `deployment/components/azure-storage` we provide a `SecretStore` and an `ExternalSecret`. In this case it is configured to sync from an Azure Keyvault. The ExternalSecret must synchronize a Secret with these contents:
 ```
