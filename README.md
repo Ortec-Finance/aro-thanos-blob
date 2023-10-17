@@ -27,7 +27,10 @@ aro-thanos-blob consists of 4 services.
 
 Each service has a role in the setup to make sure your dashboards and alerts have metrics that you know are safely peristed in an Azure Blob.
 
-### Retreiving Metrics
+Here's an image that shows an overview of the Architecture:
+>![Architecture](./BLUEPRINT%20-%20Prometheus%20Persistance.png)
+
+### Retrieving Metrics
 The Agent and Receiver ensure that both Cluster Metrics and User Workload metrics are scraped from openshift-monitoring and received from openshift-user-workload-monitoring.
 
 The GitOps in this project patches your openshift-monitoring configuration so that the cluster metrics are forwarded to the Thanos Receiver. We can unfortunately not do the same with user-workload monitoring. So instead we have a Grafana Agent scraping the /federate endpoint and remote_write it to the Thanos Receiver.
