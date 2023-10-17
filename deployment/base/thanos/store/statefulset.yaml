@@ -52,6 +52,6 @@ spec:
       volumes:
       - name: store-credentials
         secret:
-          secretName: aro-thanos-blob-af-creds
+          secretName: aro-thanos-blob-sa-creds
       - name: data
         emptyDir: {}

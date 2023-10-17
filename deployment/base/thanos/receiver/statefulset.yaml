@@ -48,7 +48,7 @@ spec:
       volumes:
       - name: store-credentials
         secret:
-          secretName: aro-thanos-blob-af-creds
+          secretName: aro-thanos-blob-sa-creds
       - name: remote-write-data
         persistentVolumeClaim:
           claimName: thanos-receiver-pvc

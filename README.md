@@ -17,6 +17,8 @@ In `deployment/components/azure-storage` we provide a `SecretStore` and an `Exte
       max_retries: 0
 ```
 This will configure the Thanos Store to persist and retreive metrics from the Azure Blob.
+The name of the secret is `aro-thanos-blob-sa-creds`. `sa` in this case stands for Storage Account.
+
 
 ## The Architecture
 aro-thanos-blob consists of 4 services.
