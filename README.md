@@ -54,3 +54,7 @@ For the Cluster Metric Connector to work, you must have the aro-thanos-blob depl
 
 For example, if you want metrics from the "Acceptance" cluster inside the "Development" cluster, you must deploy the aro-thanos-blob on both + a connector on the Development cluster.
 
+### Architecture
+This is an image that gives an overview of what is described above:
+>![Architecture](./BLUEPRINT%20-%20Connector.png)
+
