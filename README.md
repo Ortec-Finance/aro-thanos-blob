@@ -30,7 +30,7 @@ aro-thanos-blob consists of 4 services.
 Each service has a role in the setup to make sure your dashboards and alerts have metrics that you know are safely peristed in an Azure Blob.
 
 Here's an image that shows an overview of the Architecture:
->![Architecture](./Prometheus-Persistance-Architecture.png)
+>![A high level overview of the flow of aro-thanos-blob](Prometheus-Persistance-Architecture.png)
 
 ### Retrieving Metrics
 The Agent and Receiver ensure that both Cluster Metrics and User Workload metrics are scraped from openshift-monitoring and received from openshift-user-workload-monitoring.
