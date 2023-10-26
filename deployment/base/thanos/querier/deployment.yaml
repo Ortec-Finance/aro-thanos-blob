@@ -18,7 +18,7 @@ spec:
       serviceAccountName: aro-thanos-blob-thanos-querier
       containers:
       - name: thanos
-        image: quay.io/thanos/thanos:v0.24.0-rc.2
+        image: thanos-querier
         args:
         - query
         - --query.replica-label=replica
