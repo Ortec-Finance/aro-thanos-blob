@@ -23,7 +23,7 @@ spec:
         secret:
           secretName: grafana-serviceaccount-token
       containers:
-      - image: quay.io/openshift/origin-cli:4.11
+      - image: oc-cli
         name: create-datasource
         volumeMounts:
         - name: token

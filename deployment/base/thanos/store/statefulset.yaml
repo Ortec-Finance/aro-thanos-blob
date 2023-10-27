@@ -24,7 +24,7 @@ spec:
         fsGroup: 65534
       containers:
       - name: thanos
-        image: quay.io/thanos/thanos:v0.24.0-rc.2
+        image: thanos-store
         args:
         - store
         - --data-dir=/data
