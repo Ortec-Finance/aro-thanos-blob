@@ -8,7 +8,7 @@ components:
 images:
   - name: thanos-store
     newName: quay.io/thanos/thanos
-    newTag: v0.32.0-rc.1
+    newTag: v0.24.0-rc.2
   - name: thanos-receive
     newName: quay.io/thanos/thanos
     newTag: v0.32.0-rc.1
