@@ -23,7 +23,7 @@ spec:
       - args:
         - -config.file=/etc/agent/agent.yaml
         command:
-        - /bin/agent
+        - /bin/grafana-agent
         env:
         - name: HOSTNAME
           valueFrom:
