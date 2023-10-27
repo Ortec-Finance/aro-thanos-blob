@@ -38,6 +38,12 @@ spec:
         volumeMounts:
         - mountPath: /etc/agent
           name: grafana-agent
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: "100m"
+            memory: 3Gi
       serviceAccount: aro-thanos-blob-grafana-agent
       volumes:
       - configMap:
