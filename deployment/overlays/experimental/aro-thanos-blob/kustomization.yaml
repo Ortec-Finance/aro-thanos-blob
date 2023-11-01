@@ -8,22 +8,22 @@ components:
 images:
   - name: thanos-store
     newName: quay.io/thanos/thanos
-    newTag: v0.24.0-rc.2
+    newTag: v0.32.5
   - name: thanos-receive
     newName: quay.io/thanos/thanos
-    newTag: v0.24.0-rc.2
+    newTag: v0.32.5
   - name: thanos-querier
     newName: quay.io/thanos/thanos
-    newTag: v0.24.0-rc.2
+    newTag: v0.32.5
   - name: grafana-agent
     newName: grafana/agent
-    newTag: v0.28.0
+    newTag: v0.37.3
   - name: oc-cli
     newName: quay.io/openshift/origin-cli
-    newTag: '4.11'
+    newTag: '4.12'
   - name: oc-oauth
     newName: quay.io/openshift/origin-oauth-proxy
-    newTag: '4.11'
+    newTag: '4.12'
 
 patches:
   - patch: |-
