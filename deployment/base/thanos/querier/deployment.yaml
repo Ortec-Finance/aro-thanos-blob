@@ -39,3 +39,9 @@ spec:
           httpGet:
             path: /-/healthy
             port: http
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            cpu: "50m"
+            memory: 300Mi

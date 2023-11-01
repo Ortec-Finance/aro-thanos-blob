@@ -45,6 +45,13 @@ spec:
           readOnly: true
         - name: remote-write-data
           mountPath: /data/remote-write-receive-data
+        resources:
+          limits:
+            memory: 6Gi
+          requests:
+            cpu: "300m"
+            memory: 5Gi
+
       volumes:
       - name: store-credentials
         secret:
