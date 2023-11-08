@@ -34,6 +34,7 @@ spec:
         - --remote-write.address=0.0.0.0:19291
         - --objstore.config-file=/etc/prometheus/store-secret.yaml
         - --label
+        - --relabel-config=/etc/thanos/relabel-config.yaml
         ports:
         - name: http
           containerPort: 19291
@@ -45,6 +46,9 @@ spec:
           readOnly: true
         - name: remote-write-data
           mountPath: /data/remote-write-receive-data
+        - name: relabel-config
+          mountPath: /etc/thanos
+          readOnly: true
         resources:
           limits:
             memory: 6Gi
@@ -59,3 +63,6 @@ spec:
       - name: remote-write-data
         persistentVolumeClaim:
           claimName: thanos-receiver-pvc
+      - name: relabel-config
+        configMap:
+          name: thanos-relabel-config
