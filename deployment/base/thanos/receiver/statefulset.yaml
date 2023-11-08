@@ -33,8 +33,7 @@ spec:
         - --http-address=0.0.0.0:18091
         - --remote-write.address=0.0.0.0:19291
         - --objstore.config-file=/etc/prometheus/store-secret.yaml
-        - --relabel-config=/etc/thanos/relabel-config.yaml
-        - --label
+        - '--receive.relabel-config-file=/etc/thanos/relabel-config.yaml'
         ports:
         - name: http
           containerPort: 19291

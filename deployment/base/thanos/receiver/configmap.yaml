@@ -4,5 +4,5 @@ metadata:
   name: thanos-relabel-config
 data:
   relabel-config.yaml: |
-    - source_labels: ['prometheus_replica']
-      action: 'drop'
+    - regex: 'prometheus_replica'
+      action: 'labeldrop'
