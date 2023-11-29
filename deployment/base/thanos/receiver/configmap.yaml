@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: thanos-relabel-config
+data:
+  relabel-config.yaml: |
+    - regex: 'prometheus_replica'
+      action: 'labeldrop'
