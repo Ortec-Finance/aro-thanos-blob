@@ -4,3 +4,19 @@ resources:
 
 components:
   - ../../../components/connector
+
+images:
+  - name: thanos-store
+    newName: quay.io/thanos/thanos
+    newTag: v0.32.5
+
+patches:
+  - patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: 'cluster="labs"'
+    target:
+      group: apps
+      kind: StatefulSet
+      name: thanos-receive
+      version: v1
