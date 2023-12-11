@@ -1,9 +1,9 @@
 resources:
-  - ../../base
+  - ../../../base
 
 components:
-  - ../../components/azure-storage
-  - ../../components/grafana
+  - ../../../components/azure-storage
+  - ../../../components/grafana
 
 patches:
   - patch: |-
@@ -23,4 +23,14 @@ patches:
       group: apps
       kind: StatefulSet
       name: thanos-receive
+      version: v1
+
+  - patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --store=dnssrv+thanos-store-gateway.experimental-cluster-connector.svc.cluster.local
+    target:
+      group: apps
+      kind: Deployment
+      name: thanos-querier
       version: v1

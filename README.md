@@ -44,3 +44,17 @@ Thanos Receiver now has the metrics from both the Cluster and User Workloads. It
 The Thanos Store chunks the metrics in the Azure Blob, these chunks are somewhere between 2-4 hours large. This means that if we only retreive the metrics from the Thanos Store, we will only see data that is 0 to 4 hours old. This however works perfectly to look back many months worth of metrics, but not so much for alerts and a live feed of the current state.
 
 The receiver however, will give you the live feed, that's why we combine the two feeds to cover the data of the past, and now.
+
+
+## Connecting metrics from other Clusters
+All metrics will be stored in one Azure Storage, each cluster having its own blob. This allows us to also configure an additional Thanos Store to fetch metrics from other clusters. That's what the connector component is for.
+
+### Getting Started
+For the Cluster Metric Connector to work, you must have the aro-thanos-blob deployed on both/all clusters. In the cluster you wish to have metrics in from another cluster, you must define a connector for every other cluster.
+
+For example, if you want metrics from the "Acceptance" cluster inside the "Development" cluster, you must deploy the aro-thanos-blob on both + a connector on the Development cluster.
+
+### Architecture
+This is an image that gives an overview of what is described above:
+>![Architecture](./BLUEPRINT%20-%20Connector.png)
+

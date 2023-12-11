@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aro-thanos-blob
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: 'aro-thanos-blob'
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: deployment/overlays/experimental/aro-thanos-blob
+    repoURL: 'git@github.com:Ortec-Finance/aro-thanos-blob.git'
+    targetRevision: aro-thanos-connector
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

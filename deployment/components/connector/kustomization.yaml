@@ -1,0 +1,17 @@
+kind: Component
+
+patches:
+- patch: |-
+    $patch: delete
+    apiVersion: security.openshift.io/v1
+    kind: SecurityContextConstraints
+    metadata:
+        name: aro-thanos-scc
+- patch: |-
+    $patch: delete
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+        name: system:aro-thanos-blob:scc:aro-thanos
+
+
