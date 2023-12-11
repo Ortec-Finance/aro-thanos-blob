@@ -2,3 +2,4 @@ resources:
   - statefulset.yaml
   - service.yaml
   - pvc.yaml
+  - configmap.yaml
