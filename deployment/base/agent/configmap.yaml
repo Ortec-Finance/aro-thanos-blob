@@ -7,7 +7,7 @@ apiVersion: v1
 data:
   agent.yaml: |
     server:
-      log_level: debug
+      log_level: info
     integrations:
       agent:
         enabled: true
